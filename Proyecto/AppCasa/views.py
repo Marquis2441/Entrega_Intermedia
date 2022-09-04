@@ -45,7 +45,7 @@ def estudiantes_formulario(request):
                 return render(request, "AppCasa/inicio.html",{"exitoso": True})
     else:  # GET
             formulario= EstudiantesFormulario()  # Formulario vacio para construir el html
-    return render(request, "AppCasa/form_estudiantes.html")
+    return render(request, "AppCasa/form_estudiantes.html",{"formulario": formulario})
 
 def profesores_formulario(request):
     if request.method == 'POST':
