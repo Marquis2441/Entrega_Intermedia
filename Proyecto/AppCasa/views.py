@@ -18,8 +18,8 @@ def casas(request):
     return render(request, "AppCasa/casas.html",{'casas': casas})
 
 def profesores(request):
-
-    return render(request, "AppCasa/profesores.html")
+    profesores = Profesores.objects.all()
+    return render(request, "AppCasa/profesores.html",{'profesores': profesores})
 
 def casas_formulario(request):
     if request.method == 'POST':
@@ -46,3 +46,16 @@ def estudiantes_formulario(request):
     else:  # GET
             formulario= EstudiantesFormulario()  # Formulario vacio para construir el html
     return render(request, "AppCasa/form_estudiantes.html", {"formulario": formulario})
+
+def profesores_formulario(request):
+    if request.method == 'POST':
+            formulario= ProfesoresFormulario(request.POST)
+
+            if formulario.is_valid():
+                data = formulario.cleaned_data
+                profesor = Profesores(nombre=data['nombre'], apellido=data['apellido'],materia=data['materia'],casa=data['casa'])
+                profesor.save()
+                return render(request, "AppCasa/inicio.html", {"exitoso": True})
+    else:  # GET
+            formulario= ProfesoresFormulario()  # Formulario vacio para construir el html
+    return render(request, "AppCasa/form_profesores.html", {"formulario": formulario})
