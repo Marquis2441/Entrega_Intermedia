@@ -10,4 +10,6 @@ urlpatterns = [
     path('crear-casa/', views.casas_formulario, name="casas_formulario"),
     path('agregar-estudiantes/', views.estudiantes_formulario, name="estudiantes_formulario"),
     path('agregar-profesores/', views.profesores_formulario, name="profesores_formulario"),
+    path('busqueda-curso-form/', views.busqueda_casas, name="busqueda_casas_form"),
+    path('busqueda-curso/', views.buscar, name="busqueda_casas"),    
 ]

@@ -1,0 +1,11 @@
+{% extends "AppCasa/plantilla_base.html" %}
+
+{% block contenido_base %}
+<form action="{% url 'busqueda_casas' %}" method="GET">
+  {% csrf_token %}
+  <span>Casa:
+    <input type="text" name="nombre">
+  </span>
+  <input type="submit" value="Buscar" />
+</form>
+{% endblock contenido_base %}
