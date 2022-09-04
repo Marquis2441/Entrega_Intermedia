@@ -1,7 +1,44 @@
 {% extends "AppCasa/plantilla_base.html" %}
 
+{% block style_block %}
+<style>
+  table.coder-table {
+    border:3px solid;
+  }
+  th,
+  td {
+    border:1px solid;
+    padding:5px 10px;
+  }
+</style>
+{% endblock style_block %}
+
 {% block contenido_base %}
 
-<h1>Casas</h1>
+<h1>Cursos</h1>
+<a href="{% url 'casas_formulario' %}">Crear una casa</a>
+
+
+<br><br>
+<h3>Casas:</h3>
+
+<table border="2">
+
+    <tr>
+      <td>
+        <b>Nombre</b>
+      </td>
+      <td>
+        <b>Fanstasma</b>
+      </td>
+    </tr>
+    {% for casa in casas %}
+    <tr>
+      <td>{{casa.nombre}}</td>
+      <td>{{casa.fantasma}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock contenido_base %}
