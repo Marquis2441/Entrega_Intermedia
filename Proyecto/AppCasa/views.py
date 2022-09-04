@@ -10,8 +10,8 @@ def inicio(request):
     return render(request, "AppCasa/inicio.html")
 
 def estudiantes(request):
-
-    return render(request, "AppCasa/estudiantes.html")
+    estudiantes = Estudiantes.objects.all()  
+    return render(request, "AppCasa/estudiantes.html",{'estudiantes':estudiantes})
 
 def casas(request):
     casas = Casas.objects.all()
@@ -33,4 +33,16 @@ def casas_formulario(request):
     else:  # GET
             formulario= CasasFormulario()  # Formulario vacio para construir el html
     return render(request, "AppCasa/form_casas.html", {"formulario": formulario})
-# Create your views here.
+
+def estudiantes_formulario(request):
+    if request.method == 'POST':
+            formulario= EstudiantesFormulario(request.POST)
+
+            if formulario.is_valid():
+                data = formulario.cleaned_data
+                estudiante = Estudiantes(nombre=data['nombre'], apellido=data['apellido'],casa=data['casa'])
+                estudiante.save()
+                return render(request, "AppCasa/inicio.html", {"exitoso": True})
+    else:  # GET
+            formulario= EstudiantesFormulario()  # Formulario vacio para construir el html
+    return render(request, "AppCasa/form_estudiantes.html", {"formulario": formulario})

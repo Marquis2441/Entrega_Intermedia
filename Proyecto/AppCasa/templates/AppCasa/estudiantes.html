@@ -1,7 +1,48 @@
 {% extends "AppCasa/plantilla_base.html" %}
 
+{% block style_block %}
+<style>
+  table.coder-table {
+    border:3px solid;
+  }
+  th,
+  td {
+    border:1px solid;
+    padding:5px 10px;
+  }
+</style>
+{% endblock style_block %}
+
 {% block contenido_base %}
 
 <h1>Estudiantes</h1>
+<a href="{% url 'estudiantes_formulario' %}">Agregar un estudiante</a>
+
+
+<br><br>
+<h3>Estudiantes incriptos:</h3>
+
+<table border="2">
+
+    <tr>
+      <td>
+        <b>Nombre</b>
+      </td>
+      <td>
+        <b>Apellido</b>
+      </td>
+      <td>
+        <b>Casa</b>
+      </td>
+    </tr>
+    {% for estudiante in estudiantes %}
+    <tr>
+      <td>{{estudiante.nombre}}</td>
+      <td>{{estudiante.apellido}}</td>
+      <td>{{estudiante.casa}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock contenido_base %}
