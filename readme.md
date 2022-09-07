@@ -25,11 +25,15 @@ pip install -r requirements.txt
 
 ## Instrucciones para cargar casa, estudiante y profesor.
 
+``
 from Profesores.models import *
 from Casas.models import *
 from Estudiantes.models import * 
+``
 
+``
 Profesor/Casa/Estudiante = ''.objects.create(nombre='')
+``
 
 
 ## Autores
